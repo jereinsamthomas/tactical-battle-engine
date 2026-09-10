@@ -1,0 +1,532 @@
+{
+  "events.csv": {
+    "tableName": "events",
+    "fileName": "events.csv",
+    "description": "Discrete on-ball match events (passes, tackles, shots, fouls) with coordinates, timestamps, and outcomes.",
+    "columns": [
+      "event_id",
+      "match_id",
+      "timestamp_s",
+      "team_id",
+      "player_id",
+      "event_type",
+      "x",
+      "y",
+      "outcome",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "e00001",
+        "m001",
+        "121.0",
+        "t001",
+        "p001",
+        "pass",
+        "15.2",
+        "34.0",
+        "complete",
+        "event_tagging"
+      ],
+      [
+        "e00002",
+        "m001",
+        "124.6",
+        "t001",
+        "p002",
+        "dribble",
+        "58.7",
+        "10.2",
+        "complete",
+        "event_tagging"
+      ],
+      [
+        "e00003",
+        "m001",
+        "130.2",
+        "t002",
+        "p003",
+        "shot",
+        "95.0",
+        "34.0",
+        "goal",
+        "event_tagging"
+      ]
+    ]
+  },
+  "formations.csv": {
+    "tableName": "formations",
+    "fileName": "formations.csv",
+    "description": "Team shape configurations across phases (in-possession, out-of-possession, transitions) with timestamps.",
+    "columns": [
+      "formation_id",
+      "team_id",
+      "match_id",
+      "phase",
+      "formation_label",
+      "timestamp_start_s",
+      "timestamp_end_s",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "fo0001",
+        "t001",
+        "m001",
+        "possession",
+        "3-2-5",
+        "0",
+        "2700",
+        "derived"
+      ],
+      [
+        "fo0002",
+        "t001",
+        "m001",
+        "defensive",
+        "4-3-3",
+        "0",
+        "2700",
+        "derived"
+      ]
+    ]
+  },
+  "movements.csv": {
+    "tableName": "movements",
+    "fileName": "movements.csv",
+    "description": "Off-the-ball player movements tracking origin and destination zones (Z1-Z30) and tactical space created.",
+    "columns": [
+      "movement_id",
+      "match_id",
+      "player_id",
+      "timestamp_s",
+      "movement_type",
+      "origin_zone",
+      "dest_zone",
+      "purpose",
+      "space_created_zone",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "mv0001",
+        "m001",
+        "p002",
+        "124.0",
+        "decoy_run",
+        "Z20",
+        "Z25",
+        "drag_fullback_wide",
+        "Z22",
+        "derived"
+      ]
+    ]
+  },
+  "passes.csv": {
+    "tableName": "passes",
+    "fileName": "passes.csv",
+    "description": "Detailed pass vectors including line-breaking, progressive metrics, start/end zones, and outcomes.",
+    "columns": [
+      "pass_id",
+      "event_id",
+      "match_id",
+      "passer_id",
+      "receiver_id",
+      "origin_x",
+      "origin_y",
+      "dest_x",
+      "dest_y",
+      "pass_type",
+      "progressive",
+      "line_breaking",
+      "zone_origin",
+      "zone_dest",
+      "outcome",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "pa0001",
+        "e00001",
+        "m001",
+        "p001",
+        "p002",
+        "15.2",
+        "34.0",
+        "58.7",
+        "10.2",
+        "diagonal",
+        "true",
+        "true",
+        "Z8",
+        "Z20",
+        "complete",
+        "event_tagging"
+      ]
+    ]
+  },
+  "player_tracking.csv": {
+    "tableName": "player_tracking",
+    "fileName": "player_tracking.csv",
+    "description": "High-frequency 2D coordinate positions, sprint velocity (mps), and body orientation angle.",
+    "columns": [
+      "frame_id",
+      "timestamp_s",
+      "match_id",
+      "player_id",
+      "x",
+      "y",
+      "speed_mps",
+      "orientation_deg",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "f00001",
+        "120.4",
+        "m001",
+        "p001",
+        "15.2",
+        "34.0",
+        "2.1",
+        "90",
+        "tracking_optical"
+      ],
+      [
+        "f00001",
+        "120.4",
+        "m001",
+        "p002",
+        "58.7",
+        "10.2",
+        "4.5",
+        "270",
+        "tracking_optical"
+      ],
+      [
+        "f00001",
+        "120.4",
+        "m001",
+        "p003",
+        "90.1",
+        "32.5",
+        "3.0",
+        "180",
+        "tracking_optical"
+      ]
+    ]
+  },
+  "players.csv": {
+    "tableName": "players",
+    "fileName": "players.csv",
+    "description": "Squad rosters with primary and secondary tactical roles, preferred foot, and physical attributes.",
+    "columns": [
+      "player_id",
+      "name",
+      "team_id",
+      "position",
+      "role_primary",
+      "role_secondary",
+      "preferred_foot",
+      "height_cm",
+      "age",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "p001",
+        "Sample Player A",
+        "t001",
+        "CB",
+        "ball_playing_cb",
+        "stopper",
+        "right",
+        "188",
+        "26",
+        "observed"
+      ],
+      [
+        "p002",
+        "Sample Player B",
+        "t001",
+        "RW",
+        "inverted_winger",
+        "wide_playmaker",
+        "left",
+        "178",
+        "23",
+        "observed"
+      ],
+      [
+        "p003",
+        "Sample Player C",
+        "t002",
+        "ST",
+        "poacher",
+        "pressing_forward",
+        "right",
+        "182",
+        "29",
+        "observed"
+      ]
+    ]
+  },
+  "pressing.csv": {
+    "tableName": "pressing",
+    "fileName": "pressing.csv",
+    "description": "Pressing actions, pressing trigger identification, target players, and PPDA contribution metrics.",
+    "columns": [
+      "press_id",
+      "match_id",
+      "team_id",
+      "presser_id",
+      "target_player_id",
+      "timestamp_s",
+      "zone",
+      "trigger",
+      "outcome",
+      "ppda_contribution",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "pr0001",
+        "m001",
+        "t002",
+        "p003",
+        "p001",
+        "120.9",
+        "Z8",
+        "back_pass",
+        "forced_long_ball",
+        "1",
+        "event_tagging"
+      ]
+    ]
+  },
+  "set_pieces.csv": {
+    "tableName": "set_pieces",
+    "fileName": "set_pieces.csv",
+    "description": "Corner, free-kick, and throw-in deliveries with taker, delivery type, target player, and xG values.",
+    "columns": [
+      "set_piece_id",
+      "match_id",
+      "team_id",
+      "type",
+      "zone",
+      "taker_id",
+      "delivery_type",
+      "target_player_id",
+      "outcome",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "sp0001",
+        "m001",
+        "t001",
+        "corner",
+        "Z30",
+        "p002",
+        "inswinging",
+        "p001",
+        "cleared",
+        "event_tagging"
+      ]
+    ]
+  },
+  "shots.csv": {
+    "tableName": "shots",
+    "fileName": "shots.csv",
+    "description": "Shot attempts with xG, post-shot xG (PSxG), body part, assist type, and outcome.",
+    "columns": [
+      "shot_id",
+      "event_id",
+      "match_id",
+      "shooter_id",
+      "x",
+      "y",
+      "body_part",
+      "xg",
+      "psxg",
+      "outcome",
+      "assist_player_id",
+      "assist_type",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "sh0001",
+        "e00003",
+        "m001",
+        "p003",
+        "95.0",
+        "34.0",
+        "right_foot",
+        "0.42",
+        "0.55",
+        "goal",
+        "p002",
+        "cutback",
+        "event_tagging"
+      ]
+    ]
+  },
+  "tactical_decisions.csv": {
+    "tableName": "tactical_decisions",
+    "fileName": "tactical_decisions.csv",
+    "description": "Decision engine logs capturing candidate actions, chosen action, and tactical action value (TAV).",
+    "columns": [
+      "decision_id",
+      "match_id",
+      "timestamp_s",
+      "player_id",
+      "state_id",
+      "action_candidates",
+      "chosen_action",
+      "tactical_action_value",
+      "confidence",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "de0001",
+        "m001",
+        "124.6",
+        "p002",
+        "st0001",
+        "pass|dribble|cross|cutback",
+        "dribble",
+        "0.58",
+        "medium-high",
+        "ai_prediction"
+      ]
+    ]
+  },
+  "tactical_outcomes.csv": {
+    "tableName": "tactical_outcomes",
+    "fileName": "tactical_outcomes.csv",
+    "description": "Realized outcomes following tactical decisions with xT delta and opponent response shifts.",
+    "columns": [
+      "outcome_id",
+      "decision_id",
+      "match_id",
+      "realized_outcome",
+      "outcome_value",
+      "xt_delta",
+      "opponent_response_type",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "ou0001",
+        "de0001",
+        "m001",
+        "shot_goal",
+        "0.91",
+        "0.34",
+        "recovery_run_failed",
+        "derived"
+      ]
+    ]
+  },
+  "tactical_states.csv": {
+    "tableName": "tactical_states",
+    "fileName": "tactical_states.csv",
+    "description": "Global match context snapshots: game state, scoreline, phase, ball zone, and pressure level.",
+    "columns": [
+      "state_id",
+      "match_id",
+      "timestamp_s",
+      "ball_zone",
+      "phase",
+      "possession_team_id",
+      "score_state",
+      "game_state_label",
+      "pressure_level",
+      "space_value_ball_zone",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "st0001",
+        "m001",
+        "120.4",
+        "Z8",
+        "attacking_organisation",
+        "t001",
+        "0-0",
+        "level",
+        "medium",
+        "0.41",
+        "derived"
+      ]
+    ]
+  },
+  "team_shapes.csv": {
+    "tableName": "team_shapes",
+    "fileName": "team_shapes.csv",
+    "description": "Macro team geometric metrics: horizontal width, vertical length, centroid, and compactness.",
+    "columns": [
+      "shape_id",
+      "team_id",
+      "match_id",
+      "timestamp_s",
+      "phase",
+      "centroid_x",
+      "centroid_y",
+      "width_m",
+      "length_m",
+      "compactness_m",
+      "defensive_line_height_m",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "ts0001",
+        "t001",
+        "m001",
+        "120.4",
+        "attacking_organisation",
+        "52.3",
+        "34.0",
+        "58.2",
+        "42.1",
+        "12.4",
+        "38.0",
+        "derived"
+      ]
+    ]
+  },
+  "transitions.csv": {
+    "tableName": "transitions",
+    "fileName": "transitions.csv",
+    "description": "Turnover and transition phases (offensive vs defensive transitions) with start zone and duration.",
+    "columns": [
+      "transition_id",
+      "match_id",
+      "team_id",
+      "type",
+      "start_timestamp_s",
+      "end_timestamp_s",
+      "start_zone",
+      "outcome",
+      "duration_s",
+      "source"
+    ],
+    "sampleRows": [
+      [
+        "tr0001",
+        "m001",
+        "t002",
+        "defensive_transition",
+        "130.2",
+        "135.6",
+        "Z28",
+        "possession_reset",
+        "5.4",
+        "derived"
+      ]
+    ]
+  }
+}
