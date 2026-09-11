@@ -23,5 +23,13 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "legacy_drafts", "master_data"]
+  "exclude": [
+    "node_modules",
+    "master_data",
+    "legacy_drafts/battleStore.ts",
+    "legacy_drafts/engine.ts",
+    "legacy_drafts/personas.ts",
+    "legacy_drafts/physics.ts",
+    "legacy_drafts/validator.ts"
+  ]
 }

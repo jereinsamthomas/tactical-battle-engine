@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams } from "next/navigation";
-import { TacticalPitch } from "@/components/pitch/TacticalPitch";
-import { getAllScenarios } from "@/lib/data/masterStore";
-import { useBattleStore, buildUserAction } from "@/store/battleStore";
-import type { BattleTurnRequest, BattleTurnResponse } from "@/lib/types";
+import { TacticalPitch } from "../components/pitch/TacticalPitch";
+import { getAllScenarios } from "../lib/data/masterStore";
+import { useBattleStore, buildUserAction } from "../store/battleStore";
+import type { BattleTurnRequest, BattleTurnResponse } from "../lib/types";
 
 export type PersonaId = "purist" | "anvil" | "analyst" | "coach";
 
@@ -50,9 +50,11 @@ export default function BattlePage() {
     );
   }, [scenarios, scenarioId]);
 
+  const loadCustomScenarioState = useBattleStore((state) => state.loadCustomScenarioState);
+
   useEffect(() => {
     if (scenario) {
-      s.loadCustomScenarioState({
+      loadCustomScenarioState({
         name: `${scenario.formation_a} vs ${scenario.formation_b}`,
         formationHome: scenario.formation_a,
         formationAway: scenario.formation_b,
@@ -61,7 +63,7 @@ export default function BattlePage() {
         bestAction: scenario.best_action_estimate,
       });
     }
-  }, [scenario, s]);
+  }, [scenario, loadCustomScenarioState]);
 
   const result = s.lastResult;
 
